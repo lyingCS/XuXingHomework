@@ -10,10 +10,22 @@ train_loader = torch.utils.data.DataLoader(Dataset(),
                                            batch_size = 100,
                                            shuffle=True,
                                            pin_memory=True)
-train_size=int(len(train_loader)*0.6)
-val_size=int(len(train_loader)*0.2)
-test_size=len(train_loader)-train_size-val_size
-train_loader, val_loader, test_size = random_split(train_loader,[train_size, val_size, test_size])
+train_size=int(len(train_loader.dataset)*0.6)
+val_size=int(len(train_loader.dataset)*0.2)
+test_size=len(train_loader.dataset)-train_size-val_size
+train_dataset, val_dataset, test_dataset = random_split(train_loader.dataset,[train_size, val_size, test_size])
+train_loader = torch.utils.data.DataLoader(train_dataset,
+                                           batch_size = 100,
+                                           shuffle=True,
+                                           pin_memory=True)
+val_loader = torch.utils.data.DataLoader(val_dataset,
+                                          batch_size = 100,
+                                          shuffle=True,
+                                          pin_memory=True)
+test_loader = torch.utils.data.DataLoader(test_dataset,
+                                          batch_size = 100,
+                                          shuffle=True,
+                                          pin_memory=True)
 
 d_model = 512
 heads = 8
@@ -21,7 +33,7 @@ num_layers = 6
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 epochs = 10
 
-with open('WORDMAP_corpus.json', 'r') as j:
+with open('WORDMAP_poetry.json', 'r') as j:
     word_map = json.load(j)
 
 transformer = Transformer(d_model = d_model, heads = heads, num_layers = num_layers, word_map = word_map)

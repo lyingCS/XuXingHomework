@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from collections import Counter
 import json
+from collections import Counter
 
 poetry_tang = "dataset/poetryTang.txt"
 max_len = 50

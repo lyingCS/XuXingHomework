@@ -2,28 +2,28 @@
 <project version="4">
   <component name="PublishConfigData" autoUpload="Always" serverName="root@region-4.autodl.com:46995" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="lvbo1@192.168.123.82:22">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="root@region-11.autodl.com:13581">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
       <paths name="root@region-4.autodl.com:46995">
         <serverdata>
           <mappings>
-            <mapping deploy="/tmp/pycharm_project_546" local="$PROJECT_DIR$" />
+            <mapping deploy="/tmp/chatbot" local="$PROJECT_DIR$" />
           </mappings>
         </serverdata>
       </paths>
-      <paths name="zcs@192.168.123.82:22">
+      <paths name="root@region-4.autodl.com:53974">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@region-4.autodl.com:53974 (1)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@region-4.autodl.com:53974 (2)">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
