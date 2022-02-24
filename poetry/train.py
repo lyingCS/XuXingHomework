@@ -5,25 +5,24 @@ import torch.utils.data
 from models import *
 from utils import *
 
-
 train_loader = torch.utils.data.DataLoader(Dataset(),
-                                           batch_size = 100,
+                                           batch_size=100,
                                            shuffle=True,
                                            pin_memory=True)
-train_size=int(len(train_loader.dataset)*0.6)
-val_size=int(len(train_loader.dataset)*0.2)
-test_size=len(train_loader.dataset)-train_size-val_size
-train_dataset, val_dataset, test_dataset = random_split(train_loader.dataset,[train_size, val_size, test_size])
+train_size = int(len(train_loader.dataset) * 0.6)
+val_size = int(len(train_loader.dataset) * 0.2)
+test_size = len(train_loader.dataset) - train_size - val_size
+train_dataset, val_dataset, test_dataset = random_split(train_loader.dataset, [train_size, val_size, test_size])
 train_loader = torch.utils.data.DataLoader(train_dataset,
-                                           batch_size = 100,
+                                           batch_size=100,
                                            shuffle=True,
                                            pin_memory=True)
 val_loader = torch.utils.data.DataLoader(val_dataset,
-                                          batch_size = 100,
-                                          shuffle=True,
-                                          pin_memory=True)
+                                         batch_size=100,
+                                         shuffle=True,
+                                         pin_memory=True)
 test_loader = torch.utils.data.DataLoader(test_dataset,
-                                          batch_size = 100,
+                                          batch_size=100,
                                           shuffle=True,
                                           pin_memory=True)
 
@@ -36,16 +35,14 @@ epochs = 10
 with open('WORDMAP_poetry.json', 'r') as j:
     word_map = json.load(j)
 
-transformer = Transformer(d_model = d_model, heads = heads, num_layers = num_layers, word_map = word_map)
+transformer = Transformer(d_model=d_model, heads=heads, num_layers=num_layers, word_map=word_map)
 transformer = transformer.to(device)
 adam_optimizer = torch.optim.Adam(transformer.parameters(), lr=0, betas=(0.9, 0.98), eps=1e-9)
-transformer_optimizer = AdamWarmup(model_size = d_model, warmup_steps = 4000, optimizer = adam_optimizer)
+transformer_optimizer = AdamWarmup(model_size=d_model, warmup_steps=4000, optimizer=adam_optimizer)
 criterion = LossWithLS(len(word_map), 0.1).to(device)
 
 
-
 def train(train_loader, transformer, criterion, epoch):
-
     transformer.train()
     sum_loss = 0
     count = 0
@@ -81,10 +78,10 @@ def train(train_loader, transformer, criterion, epoch):
         count += samples
 
         if i % 100 == 0:
-            print("Epoch [{}][{}/{}]\tLoss: {:.3f}".format(epoch, i, len(train_loader), sum_loss/count))
+            print("Epoch [{}][{}/{}]\tLoss: {:.3f}".format(epoch, i, len(train_loader), sum_loss / count))
+
 
 def validate(val_loader, transformer, criterion, epoch):
-
     transformer.eval()
     sum_loss = 0
     count = 0
@@ -120,7 +117,6 @@ def validate(val_loader, transformer, criterion, epoch):
 
 
 for epoch in range(epochs):
-
     train(train_loader, transformer, criterion, epoch)
     validate(val_loader, transformer, criterion, epoch)
 

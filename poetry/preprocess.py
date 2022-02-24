@@ -25,7 +25,7 @@ for line in lines:
     second = remove_punc(objects[-1]).strip()
     first = [s for s in first]
     second = [s for s in second]
-    if len(second) > max_len:
+    if len(second) > max_len or len(first) > max_len:
         continue
     pairs.append([first, second])
 

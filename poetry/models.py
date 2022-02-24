@@ -10,7 +10,7 @@ class Embeddings(nn.Module):
     """
     Implements embeddings of the words and adds their positional encodings. 
     """
-    def __init__(self, vocab_size, d_model, max_len = 50):
+    def __init__(self, vocab_size, d_model, max_len = 70):
         super(Embeddings, self).__init__()
         self.d_model = d_model
         self.dropout = nn.Dropout(0.1)
